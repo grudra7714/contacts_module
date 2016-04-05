@@ -1,0 +1,55 @@
+<div class="container" id="home" style="width: 800px;">
+  <div class="row">
+      <!--<div class="col s12">
+        <div class="card">
+          <ul class="tabs">
+            <li class="tab col s4"><a href="#test1" style="color: blue;"> Contacts API</a></li>
+            <div class="indicator blue" style="z-index: 1; overflow: hidden;"></div>
+          </ul>
+        </div>
+      </div>-->
+      <div class="col s12">
+        <div class="row">
+          <nav>
+            <p Search Bar </p>
+            <div class="nav-wrapper white">
+              <form>
+                <div class="input-field active">
+                  <input id="search" type="search" placeholder=" Search with Name, Company, Zip, City, State, Phone .. Press Enter" press-enter="find()"  ng-model="search" ng-click="searchContact()" required>
+                  <label for="search"><i class="material-icons">search</i></label>
+                  <i class="material-icons" ng-click="closeSearch()">close</i>
+                </div>
+              </form>
+            </div>
+          </nav>
+        </div>
+      </div>
+      <div class="progress" ng-show="load" style="margin-top: 200px;">
+        <div class="indeterminate"></div>
+      </div>
+      <div class="row pagination" id="test1" style="width: 1000px;" >
+        <div ng-include="'cards.html'" id="_cards" ng-show="!flag"></div>
+        <div ng-include="'searchCards.html'" id="scards" ng-show="flag"></div>
+      </div>
+
+      <!-- Modal Structure -->
+       <div id="modal1" ng-include="'addModal.html'" class="modal">
+        </div>
+
+      <!-- UPDATE MODEL -->
+
+      <div id="update1" ng-include="'update.html'" class="modal">
+      </div>
+
+
+
+    </div>
+</div>
+<script>
+$(document).ready(function(){
+  $('ul.tabs').tabs();
+  $('select:not([multiple])').material_select();
+});
+
+
+</script>

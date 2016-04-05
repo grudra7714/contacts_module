@@ -1,0 +1,105 @@
+<div class="col s12 m5" ng-if="!loadCards" style=" margin-left: 5px;"  ng-repeat="contact in contacts track by $index" repeat-done="initModals()">
+
+  <div class="card hoverable" id="{{contact.id}}">
+    <div class="card-image  waves-effect waves-block waves-light">
+      <img class="activator center" src="images/contact.ico" style=" margin-left: 40%;width: 200px; height: 200px;">
+    </div>
+    <div class="card-content" style="height: 70px;">
+      <span class="card-title activator grey-text text-darken-4">
+        {{contact.first_name}} {{contact.last_name}}
+        <i class="material-icons right">more_vert</i>
+      </span>
+    </div>
+    <div class="card-reveal" style="x-overflow: hidden; word-wrap: break-word; font-size: 60%;">
+        <span class="card-title grey-text text-darken-5">{{contact.first_name}} {{contact.last_name}}
+          <i class="material-icons right">close</i></span>
+
+        <div class="row">
+          <div class="col s3">
+            <p>Company: {{contact.company_name}}</p>
+          </div>
+          <div class="col s4">
+            <p>Address: {{contact.address}}</p>
+          </div>
+          <div class="col s5">
+            <p>Email: {{contact.email}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s4">
+            <p>City: {{contact.city}}</p>
+          </div>
+          <div class="col s4">
+            <p>State: {{contact.state}}</p>
+          </div>
+          <div class="col s4">
+            <p>Zip: {{contact.zip}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s4">
+            <p>Phone: {{contact.phone}}</p>
+          </div>
+          <div class="col s4">
+            <p>Workphone: {{contact.work_phone}}</p>
+          </div>
+          <div class="col s4">
+            <p>URL: {{contact.url}}</p>
+          </div>
+        </div>
+    </div>
+    <div class="card-action" style="height: 50px;">
+      <input type="hidden" ng-model="_id" value="{{contact.id}}" />
+
+      <a class="modal-trigger" ng-click="getContactUpdateForm(contact.id)" href="#update1"> <img src="images/edit.png" size="max-width: 100%; max-height: 100%;"/> </a>
+      <a ng-click="delete(contact.id)" href="#"> <i class="material-icons" style="color: black;">delete</i> </a>
+      <a ng-click="setEmail(contact.id)" class="modal-trigger" href="#email"> <i class="material-icons" style="color: black;">email</i> </a>
+    </div>
+  </div>
+</div>
+
+<div id="email" class="modal">
+  <div class="modal-content">
+    <div class="input-field col s4">
+      <input id="emailid" ng-model="emailid" type="email" class="validate">
+      <label for="emailid">Email</label>
+    </div>
+    <div class="input-field col s8">
+      <button ng-click="email()" class="btn waves-effect waves-light"> Send </button>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+  </div>
+</div>
+
+
+<div class="col s12 left-align" ng-if="!loadCards">
+  <div class="input-field col s1">
+    <a class="btn-floating btn-large waves-effect waves-light red modal-trigger" href="#modal1"><i class="material-icons">add</i></a>
+  </div>
+    <div class="col s2" style="margin-top: 30px;">
+      <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Sort Contacts</a>
+
+        <!-- Dropdown Structure -->
+        <ul id='dropdown1' class='dropdown-content'>
+          <li><a href="#!" ng-click="sort('first_name')">First Name</a></li>
+          <li><a href="#!" ng-click="sort('last_name')">Last Name</a></li>
+          <li><a href="#!" ng-click="sort('address')">Address</a></li>
+          <li><a href="#!" ng-click="sort('city')">City</a></li>
+          <li><a href="#!" ng-click="sort('state')">State</a></li>
+          <li><a href="#!" ng-click="sort('zip')">Zip</a></li>
+
+        </ul>
+      </div>
+</div>
+<div class="col s12" style="height: 100px;margin-left: 250px;">
+
+  <ul class="pagination" ng-if="!loadCards">
+    <li class="waves-effect"  ng-click="previous()"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+      <li class="waves-effect" id="{{n}}" ng-repeat="n in input track by $index">
+        <a ng-click="changePage(n)">{{n}}</a>
+      </li>
+      <li class="waves-effect" ng-click="next()"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+  </ul>
+</div>
