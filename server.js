@@ -10,6 +10,10 @@ var methodOverride      = require('method-override');
 var multer = require('multer'); // v1.0.5
 var upload = multer(); // for parsing multipart/form-data
 
+var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
+ 
+
 // create reusable transporter object using the default SMTP transport
 
 // view engine setup
@@ -91,7 +95,11 @@ app.post('/email', upload.array(),function (req, res) {
   });
 })
 
-
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
+server.listen(server_port, server_ip_address, function () {
+  console.log( "Listening on " + server_ip_address + ", server_port " + port )
 });
+
+
+/*app.listen(3000, function () {
+  console.log('Example app listening on port 3000!');
+});*/
