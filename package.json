@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
   "dependencies": {
     "body-parser": "^1.15.0",
     "connect": "^3.4.1",
