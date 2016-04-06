@@ -10,14 +10,10 @@ var methodOverride      = require('method-override');
 var multer = require('multer'); // v1.0.5
 var upload = multer(); // for parsing multipart/form-data
 
-var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
-var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
- 
-
 // create reusable transporter object using the default SMTP transport
 
 // view engine setup
-app.set('views', path.join(__dirname, 'app'));
+app.set('views', path.join(__dirname, ''));
 app.set('view engine', 'ejs');
 app.engine('html', ejs.renderFile);
 
@@ -30,8 +26,8 @@ app.use(bodyParser.urlencoded({                     // parse application/x-www-f
 }));
 
 
-app.use(express.static(path.join(__dirname, 'app')));
-app.use(express.static(path.join(__dirname, 'app/views')));
+app.use(express.static(path.join(__dirname, '')));
+app.use(express.static(path.join(__dirname, 'views')));
 
 
 var transporter = nodemailer.createTransport('smtps://carolina.janedoe%40gmail.com:chutiyabangya@smtp.gmail.com');
@@ -95,11 +91,7 @@ app.post('/email', upload.array(),function (req, res) {
   });
 })
 
-server.listen(server_port, server_ip_address, function () {
-  console.log( "Listening on " + server_ip_address + ", server_port " + port )
-});
 
-
-/*app.listen(3000, function () {
+app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
-});*/
+});
